@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteCond %{THE_REQUEST} /([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+
+RewriteRule ^((?!).*)$ $1 [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php?path=$1 [NC,L,QSA]
