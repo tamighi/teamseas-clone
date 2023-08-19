@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./api/docker
+      dockerfile: Dockerfile
+    ports:
+      - 8000:80
+    volumes:
+      - ./api:/var/www
