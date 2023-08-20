@@ -3,12 +3,28 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\DonationRepository;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Get;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Controller\TotalDonationController;
+use App\Repository\DonationRepository;
 
 #[ORM\Entity(repositoryClass: DonationRepository::class)]
-#[ApiResource]
+#[ApiResource(
+  operations: [
+    new GetCollection(
+      name: "get_total_donations",
+      uriTemplate: "/donations/total",
+      controller: TotalDonationController::class,
+
+    ),
+    new Get(),
+    new GetCollection(),
+    new Post()
+  ]
+)]
 class Donation
 {
   #[ORM\Id]
