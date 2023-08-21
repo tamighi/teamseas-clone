@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TotalDonationClass
 {
-  public function __construct(int $count) {
+  public function __construct(int $count)
+  {
     $this->count = $count;
   }
 

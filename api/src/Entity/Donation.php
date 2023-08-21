@@ -13,6 +13,9 @@ use App\Repository\DonationRepository;
 
 #[ORM\Entity(repositoryClass: DonationRepository::class)]
 #[ApiResource(
+  mercure: [
+    "topics" => ["donations"],
+  ],
   operations: [
     new GetCollection(
       name: "get_total_donations",
