@@ -1,0 +1,18 @@
+<mat-card-content>
+  <h4 class="header-text">DETAILS</h4>
+  <form id="donation-form" [formGroup]="donationForm" (ngSubmit)="onSubmit($event)" class="donation-form">
+    <app-input [required]="true" [formGroup]="donationForm" name="displayName" label="Display Name" />
+    <app-input [required]="true" [formGroup]="donationForm" name="email" label="Email" />
+    <app-input [formGroup]="donationForm" name="team" label="Team Name" />
+    <app-input [formGroup]="donationForm" name="mobile" label="Mobile Phone" />
+    <app-text-area [formGroup]="donationForm" name="message" label="Message" />
+  </form>
+</mat-card-content>
+<mat-card-actions>
+  <button class="action-button" color="accent" type="button" mat-raised-button (click)="onPreviousClick()">
+    previous
+  </button>
+  <button form="donation-form" type="submit" class="action-button" color="accent" mat-raised-button>
+    submit
+  </button>
+</mat-card-actions>

@@ -1,0 +1,4 @@
+<mat-form-field [formGroup]="formGroup" class="app-input">
+  <mat-label>{{ label }} {{ !required ? "(Optional)" : "" }}</mat-label>
+  <input [id]="name" matInput [formControlName]="name" />
+</mat-form-field>

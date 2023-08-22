@@ -1,0 +1,7 @@
+.app-text-area {
+  width: 100%;
+}
+
+.no-resize {
+  resize: none;
+}

@@ -1,0 +1,32 @@
+<mat-card-content>
+  <div class="pound-choice-container">
+    <span class="pound-choice-title">
+      {{ "Join #TeamSeas" | uppercase }}
+    </span>
+    <span class="pound-choice-text">
+      Every $1 is one less pound of trash in the ocean
+    </span>
+
+    <div class="fixed-amount-grid">
+      <ng-container *ngFor="let amount of fixedAmounts">
+        <button class="amount-button" (click)="changeSelectedAmount(amount)"
+          [color]="amount === selectedAmount ? 'primary' : 'basic'" type="button" mat-raised-button>
+          <div class="amount-button-container">
+            <span>{{ amount }}</span>
+            <span>POUNDS</span>
+          </div>
+        </button>
+      </ng-container>
+    </div>
+
+    <mat-form-field>
+      <input numbersOnly (ngModelChange)="onInputChange($event)" [formControl]="customAmount" (focus)="onInputFocus()"
+        placeholder="Other amount" matInput />
+    </mat-form-field>
+  </div>
+</mat-card-content>
+<mat-card-actions>
+  <button class="action-button" color="accent" (click)="onNextClick()" type="button" mat-raised-button>
+    next
+  </button>
+</mat-card-actions>

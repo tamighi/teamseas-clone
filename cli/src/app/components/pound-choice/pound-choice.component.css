@@ -1,0 +1,37 @@
+.pound-choice-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+.pound-choice-title {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.pound-choice-text {
+  max-width: 260px;
+  align-self: center;
+}
+
+.fixed-amount-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.amount-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.amount-button {
+  padding: 16px 8px;
+  height: unset;
+}
+
+.action-button {
+  margin: auto;
+}

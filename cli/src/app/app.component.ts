@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { HeroComponent } from "./views/hero/hero.component";
-import { ContributeComponent } from "./views/contribute/contribute.component";
-import { TopContributorsComponent } from "./views/top-contributors/top-contributors.component";
+import { HeroComponent } from "./components/hero/hero.component";
+import { ContributeComponent } from "./components/contribute/contribute.component";
+import { TopContributorsComponent } from "./components/top-contributors/top-contributors.component";
 
 @Component({
   selector: "app-root",
