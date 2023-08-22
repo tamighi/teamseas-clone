@@ -1,0 +1,26 @@
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding-top: 30px;
+  max-width: 585px;
+}
+
+.brand-logo {
+  max-width: 300px;
+}
+
+.hero-text {
+  font-size: 20px;
+}
+
+.pound-number {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.pound-text {
+  text-transform: uppercase;
+}
