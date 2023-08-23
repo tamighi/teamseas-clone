@@ -1,6 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Donation } from "../interfaces/donation";
 
+type QueryOptions = {
+  order?: {
+    count?: "desc";
+    createdAt?: "desc";
+  };
+  page?: number;
+};
+
 @Injectable({
   providedIn: "root",
 })
@@ -14,10 +22,28 @@ export class DonationService {
     return data.json();
   }
 
-  async getAllDonations() {
-    const data = await fetch(this.backendUrl);
-    const json = await data.json();
-    return json["hydra:member"];
+  async getAllDonations(options: QueryOptions = {}) {
+    const { order = {}, page } = options;
+
+    let query = "";
+
+    Object.keys(order).forEach((key, i) => {
+      const value = order[key as keyof typeof order];
+      if (i > 0) {
+        query += "&";
+      }
+      query += `order[${key}]=${value}`
+    })
+
+    const url = `${this.backendUrl}?${query}`;
+
+    try {
+      const data = await fetch(url);
+      const json = await data.json();
+      return json["hydra:member"];
+    } catch (e: unknown) {
+      console.log(e);
+    }
   }
 
   async postDonation(donation: Donation) {
@@ -27,7 +53,7 @@ export class DonationService {
       return fetch(this.backendUrl, {
         method: "POST",
         body: JSON.stringify(donation),
-        headers
+        headers,
       });
     } catch (error: unknown) {
       console.log(error);

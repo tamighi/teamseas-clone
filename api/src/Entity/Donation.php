@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Get;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Controller\TotalDonationController;
 use App\Repository\DonationRepository;
+use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 
 #[ORM\Entity(repositoryClass: DonationRepository::class)]
 #[ApiResource(
@@ -28,6 +30,7 @@ use App\Repository\DonationRepository;
     new Post()
   ]
 )]
+#[ApiFilter(OrderFilter::class, properties: ['createdAt', 'count'], arguments: ['orderParameterName' => 'order'])]
 class Donation
 {
   #[ORM\Id]

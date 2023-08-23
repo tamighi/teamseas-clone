@@ -1,5 +1,6 @@
 <mat-card class="contributors-card">
-  <mat-button-toggle-group value="recent" class="card-header">
+  <mat-button-toggle-group (ngModelChange)="onFilterClick($event)" [ngModel]="filter" value="recent"
+    class="card-header">
     <mat-button-toggle value="recent"> MOST RECENT </mat-button-toggle>
     <mat-button-toggle value="trash"> MOST TRASH </mat-button-toggle>
   </mat-button-toggle-group>

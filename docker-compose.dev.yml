@@ -37,6 +37,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - my-db:/var/lib/mysql
     networks:
       - mynetwork
 
@@ -54,3 +56,4 @@ networks:
 volumes:
   mercure_data:
   mercure_config:
+  my-db:
