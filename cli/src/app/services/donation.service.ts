@@ -9,22 +9,6 @@ export class DonationService {
 
   constructor() {}
 
-  getDonations() {
-    const donations: Donation[] = [...Array(10)].map((_, i) => {
-      return {
-        displayName: "name" + i,
-        email: "mail@" + i + ".com",
-        count: i * 10,
-        team: "myTeam",
-        mobile: "00323232",
-        message: "Hello World",
-        createdAt: new Date(),
-      };
-    });
-
-    return donations;
-  }
-
   async getTotalDonationCount() {
     const data = await fetch(this.backendUrl + "/total");
     return data.json();
@@ -34,5 +18,20 @@ export class DonationService {
     const data = await fetch(this.backendUrl);
     const json = await data.json();
     return json["hydra:member"];
+  }
+
+  async postDonation(donation: Donation) {
+    try {
+      const headers = new Headers();
+      headers.set("Content-Type", "application/json");
+      return fetch(this.backendUrl, {
+        method: "POST",
+        body: JSON.stringify(donation),
+        headers
+      });
+    } catch (error: unknown) {
+      console.log(error);
+      return undefined;
+    }
   }
 }

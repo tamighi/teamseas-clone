@@ -44,8 +44,6 @@ export class ContributeFormComponent {
   onSubmit(e: Event) {
     e.preventDefault();
     this.donationForm.markAllAsTouched();
-    if (this.donationForm.valid) {
-      this.submitEvent.emit();
-    }
+    this.submitEvent.emit();
   }
 }

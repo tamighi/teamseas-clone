@@ -5,6 +5,8 @@ import { PoundChoiceComponent } from "../pound-choice/pound-choice.component";
 import { MatButtonModule } from "@angular/material/button";
 import { ContributeFormComponent } from "../contribute-form/contribute-form.component";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Donation } from "src/app/interfaces/donation";
+import { DonationService } from "src/app/services/donation.service";
 
 @Component({
   selector: "app-contribute",
@@ -32,6 +34,8 @@ export class ContributeComponent implements OnInit {
     mobile: new FormControl(""),
     message: new FormControl(""),
   });
+
+  constructor(private donationService: DonationService) {}
 
   ngOnInit(): void {
     this.createPoundChoiceComponent();
@@ -63,8 +67,27 @@ export class ContributeComponent implements OnInit {
     this.createPoundChoiceComponent();
   }
 
-  onSubmit() {
-    console.log(this.donationForm.valid)
-    console.log(this.donationForm.value, this.selectedAmount)
+  async onSubmit() {
+    if (!this.selectedAmount) {
+      this.createPoundChoiceComponent();
+      return;
+    }
+    if (!this.donationForm.valid) return;
+
+    const donation: Donation = {
+      ...(this.donationForm.value as Omit<Donation, "count">),
+      ...{ count: this.selectedAmount },
+    };
+
+    const data = await this.donationService.postDonation(donation);
+
+    if (!data) {
+      alert("An error has occured...");
+      return ;
+    }
+
+    this.donationForm.reset();
+    this.selectedAmount = 20;
+    alert("Thank you !");
   }
 }
