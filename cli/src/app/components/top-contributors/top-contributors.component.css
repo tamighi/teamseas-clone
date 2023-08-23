@@ -1,0 +1,62 @@
+.contributors-card {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+}
+
+.card-header {
+  margin-bottom: 16px;
+}
+
+.donation-section {
+  width: 100%;
+}
+
+.donation {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+}
+
+.donation-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.donation-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.team {
+  color: orange;
+  text-transform: uppercase;
+}
+
+.display-name {
+  font-weight: 700;
+  color: #3f51b5;
+}
+
+.donation-right {
+  align-self: flex-end;
+  gap: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.count {
+  padding: 6px;
+  background-color: #3f51b5;
+  color: white;
+}
+
+.date {
+  color: grey;
+}

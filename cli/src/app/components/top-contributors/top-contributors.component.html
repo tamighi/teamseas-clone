@@ -1,1 +1,21 @@
-<p>top-contributors works!</p>
+<mat-card class="contributors-card">
+  <mat-button-toggle-group value="recent" class="card-header">
+    <mat-button-toggle value="recent"> MOST RECENT </mat-button-toggle>
+    <mat-button-toggle value="trash"> MOST TRASH </mat-button-toggle>
+  </mat-button-toggle-group>
+  <div *ngFor="let donation of donations" class="donation-section">
+    <div class="donation">
+      <img class="donation-icon" src="/assets/star-icon.png" alt="icon" />
+      <div class="donation-main">
+        <span class="team">{{ donation.team }}</span>
+        <span class="display-name">{{ donation.displayName }}</span>
+        <p>{{ donation.message }}</p>
+      </div>
+      <div class="donation-right">
+        <mat-card class="count"> {{ donation.count }} pounds</mat-card>
+        <span class="date">{{ donation.createdAt | date }}</span>
+      </div>
+    </div>
+    <hr />
+  </div>
+</mat-card>

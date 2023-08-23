@@ -27,12 +27,25 @@ export class ContributeFormComponent {
 
   @Output() previousEvent = new EventEmitter();
 
+  getInputError(name: string) {
+    if (this.donationForm.getError("email", name)) {
+      return name;
+    }
+    if (this.donationForm.getError("required", name)) {
+      return name;
+    }
+    return null;
+  }
+
   onPreviousClick() {
     this.previousEvent.emit();
   }
 
   onSubmit(e: Event) {
     e.preventDefault();
-    this.submitEvent.emit();
+    this.donationForm.markAllAsTouched();
+    if (this.donationForm.valid) {
+      this.submitEvent.emit();
+    }
   }
 }

@@ -1,4 +1,5 @@
 <mat-form-field [formGroup]="formGroup" class="app-input">
   <mat-label>{{ label }} {{ !required ? "(Optional)" : "" }}</mat-label>
   <input [id]="name" matInput [formControlName]="name" />
+  <mat-error *ngIf="error !== null">{{error}}</mat-error>
 </mat-form-field>

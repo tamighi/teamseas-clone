@@ -4,7 +4,7 @@ import { MatCardModule } from "@angular/material/card";
 import { PoundChoiceComponent } from "../pound-choice/pound-choice.component";
 import { MatButtonModule } from "@angular/material/button";
 import { ContributeFormComponent } from "../contribute-form/contribute-form.component";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-contribute",
@@ -26,8 +26,8 @@ export class ContributeComponent implements OnInit {
   container!: ViewContainerRef;
 
   donationForm = new FormGroup({
-    displayName: new FormControl(""),
-    email: new FormControl(""),
+    displayName: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
     team: new FormControl(""),
     mobile: new FormControl(""),
     message: new FormControl(""),
@@ -64,6 +64,7 @@ export class ContributeComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.donationForm.valid)
     console.log(this.donationForm.value, this.selectedAmount)
   }
 }

@@ -21,4 +21,5 @@ export class InputComponent {
   @Input() label!: string;
   @Input() formGroup!: FormGroup;
   @Input() required: boolean = false;
+  @Input() error: string | null = null;
 }

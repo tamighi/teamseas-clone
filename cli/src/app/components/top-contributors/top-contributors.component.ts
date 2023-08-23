@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { DonationService } from "src/app/services/donation.service";
+import { Donation } from "src/app/interfaces/donation";
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @Component({
-  selector: 'app-top-contributors',
+  selector: "app-top-contributors",
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './top-contributors.component.html',
-  styleUrls: ['./top-contributors.component.css']
+  imports: [CommonModule, MatCardModule, MatButtonToggleModule],
+  templateUrl: "./top-contributors.component.html",
+  styleUrls: ["./top-contributors.component.css"],
 })
-export class TopContributorsComponent {
+export class TopContributorsComponent implements OnInit {
+  public donations: Donation[] = [];
 
+  constructor(private donationService: DonationService) { }
+
+  ngOnInit(): void {
+    this.donations = this.donationService.getDonations();
+  }
 }
