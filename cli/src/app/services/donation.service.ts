@@ -5,7 +5,9 @@ import { Donation } from "../interfaces/donation";
   providedIn: "root",
 })
 export class DonationService {
-  constructor() { }
+  backendUrl = "http://localhost:8000/api/donations";
+
+  constructor() {}
 
   getDonations() {
     const donations: Donation[] = [...Array(10)].map((_, i) => {
@@ -21,5 +23,16 @@ export class DonationService {
     });
 
     return donations;
+  }
+
+  async getTotalDonationCount() {
+    const data = await fetch(this.backendUrl + "/total");
+    return data.json();
+  }
+
+  async getAllDonations() {
+    const data = await fetch(this.backendUrl);
+    const json = await data.json();
+    return json["hydra:member"];
   }
 }

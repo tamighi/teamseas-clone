@@ -15,9 +15,13 @@ import { MatButtonToggleModule } from "@angular/material/button-toggle";
 export class TopContributorsComponent implements OnInit {
   public donations: Donation[] = [];
 
-  constructor(private donationService: DonationService) { }
+  constructor(private donationService: DonationService) {}
 
   ngOnInit(): void {
-    this.donations = this.donationService.getDonations();
+    this.fetchDonations();
+  }
+
+  async fetchDonations() {
+    this.donations = await this.donationService.getAllDonations();
   }
 }

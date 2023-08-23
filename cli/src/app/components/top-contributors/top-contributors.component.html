@@ -8,7 +8,9 @@
       <img class="donation-icon" src="/assets/star-icon.png" alt="icon" />
       <div class="donation-main">
         <span class="team">{{ donation.team }}</span>
-        <span class="display-name">{{ donation.displayName }}</span>
+        <span class="display-name">{{
+          !donation.anonymous ? donation.displayName : "anonymous"
+          }}</span>
         <p>{{ donation.message }}</p>
       </div>
       <div class="donation-right">
