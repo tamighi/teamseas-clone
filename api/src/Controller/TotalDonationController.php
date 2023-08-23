@@ -23,8 +23,11 @@ class TotalDonationController extends AbstractController
 
   public function __invoke()
   {
-    $count = $this->repository->getTotalDonation();
-
-    return $this->json(new TotalDonationClass($count));
+    try {
+      $count = $this->repository->getTotalDonation();
+      return $this->json(new TotalDonationClass($count));
+    } catch (\Error $e) {
+      return $this->json(new TotalDonationClass(0));
+    }
   }
 }
