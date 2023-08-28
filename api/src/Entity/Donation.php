@@ -15,6 +15,7 @@ use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 
 #[ORM\Entity(repositoryClass: DonationRepository::class)]
 #[ApiResource(
+  paginationItemsPerPage: 10,
   mercure: [
     "topics" => ["donations"],
   ],

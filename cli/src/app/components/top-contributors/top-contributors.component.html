@@ -21,4 +21,8 @@
     </div>
     <hr />
   </div>
+  <mat-card-actions>
+    <mat-paginator hidePageSize (page)="handlePageEvent($event)" [pageSize]="pageSize" [pageIndex]="page - 1"
+      [length]="nbDonation"></mat-paginator>
+  </mat-card-actions>
 </mat-card>

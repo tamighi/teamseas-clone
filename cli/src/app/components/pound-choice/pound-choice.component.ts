@@ -38,6 +38,10 @@ export class PoundChoiceComponent implements OnInit {
     ) {
       this.customAmount.setValue(this.selectedAmount.toString());
     }
+
+    this.customAmount.valueChanges.subscribe((value) =>
+      this.onInputChange(value),
+    );
   }
 
   changeSelectedAmount(amount: number) {
@@ -52,7 +56,9 @@ export class PoundChoiceComponent implements OnInit {
     this.selectedAmountChange.emit(null);
   }
 
-  onInputChange(input: string) {
+  onInputChange(input: string | null) {
+    if (!input) return;
+
     const amount = parseInt(input);
 
     this.selectedAmount = amount;

@@ -14,6 +14,7 @@ type QueryOptions = {
 })
 export class DonationService {
   backendUrl = "http://localhost:8000/api/donations";
+  mercureUrl = "http://localhost:8002/.well-known/mercure";
 
   constructor() {}
 
@@ -25,6 +26,8 @@ export class DonationService {
   async getAllDonations(options: QueryOptions = {}) {
     const { order = {}, page } = options;
 
+    // Query management
+
     let query = "";
 
     Object.keys(order).forEach((key, i) => {
@@ -32,17 +35,28 @@ export class DonationService {
       if (i > 0) {
         query += "&";
       }
-      query += `order[${key}]=${value}`
-    })
+      query += `order[${key}]=${value}`;
+    });
+
+    if (page !== undefined) {
+      query += `&page=${page}`;
+    }
+
+    // Fetch
 
     const url = `${this.backendUrl}?${query}`;
 
     try {
-      const data = await fetch(url);
-      const json = await data.json();
-      return json["hydra:member"];
+      const res = await fetch(url);
+      const json = await res.json();
+      const data = {
+        count: json["hydra:totalItems"],
+        data: json["hydra:member"]
+      }
+      return data;
     } catch (e: unknown) {
       console.log(e);
+      return null;
     }
   }
 
@@ -59,5 +73,15 @@ export class DonationService {
       console.log(error);
       return undefined;
     }
+  }
+
+  subscribe(callback: (donation: Donation) => void) {
+    const url = new URL(this.mercureUrl);
+    url.searchParams.append("topic", "donations");
+    const eventSource = new EventSource(url);
+    eventSource.onmessage = (event) => {
+      const data: Donation = JSON.parse(event.data);
+      callback(data);
+    };
   }
 }

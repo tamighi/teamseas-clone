@@ -20,8 +20,7 @@
     </div>
 
     <mat-form-field>
-      <input numbersOnly (ngModelChange)="onInputChange($event)" [formControl]="customAmount" (focus)="onInputFocus()"
-        placeholder="Other amount" matInput />
+      <input numbersOnly [formControl]="customAmount" (focus)="onInputFocus()" placeholder="Other amount" matInput />
     </mat-form-field>
   </div>
 </mat-card-content>
